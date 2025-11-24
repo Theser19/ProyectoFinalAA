@@ -1,0 +1,16 @@
+{
+  "vocab_size": 10000,
+  "max_length": 50,
+  "model_type": "LSTM",
+  "classes": [
+    "Not Funny",
+    "Funny"
+  ],
+  "accuracy": 0.938825,
+  "f1_score": 0.9385036817370762,
+  "params": {
+    "embedding_dim": 64,
+    "lstm_units": 64,
+    "dropout": 0.3
+  }
+}
