@@ -227,7 +227,7 @@
                         <span class="text-[10px] uppercase tracking-[0.3em] text-neon font-mono">Arquitectura & Performance</span>
                         <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-6">Detalles del <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Entrenamiento</span></h2>
                         <p class="text-gray-400 max-w-2xl mx-auto font-body text-sm">
-                            Implementación de Deep Learning utilizando TensorFlow/Keras. Análisis comparativo entre arquitecturas simples y profundas con regularización.
+                            Implementación de Deep Learning utilizando TensorFlow/Keras. Resultados obtenidos tras experimentación con hiperparámetros y arquitecturas en Colab.
                         </p>
                     </div>
 
@@ -240,31 +240,23 @@
                             
                             <h3 class="text-2xl font-bold mb-2 text-indigo-400">CNN: Clasificación Visual</h3>
                             <p class="text-xs font-mono text-gray-500 mb-6 border-b border-white/10 pb-4">
-                                ARQUITECTURA: PROFUNDA (MODELO B) • INPUT: 150x150px
+                                ARQUITECTURA: MODELO B (PROFUNDO) • INPUT: 150x150px
                             </p>
 
                             <div class="space-y-6">
                                 <div>
-                                    <h4 class="text-sm font-bold text-white mb-2">Arquitectura del Modelo</h4>
+                                    <h4 class="text-sm font-bold text-white mb-2">Arquitectura & Configuración</h4>
                                     <ul class="text-xs text-gray-400 space-y-1 font-mono list-disc list-inside">
                                         <li>4 Capas Convolucionales (32, 64, 128, 128 filtros)</li>
-                                        <li>MaxPooling 2D para reducción de dimensionalidad</li>
-                                        <li><strong>Dropout (0.5)</strong> para evitar sobreajuste</li>
-                                        <li>Función de activación: ReLU + Softmax</li>
+                                        <li>MaxPooling 2D + Flatten + Dense (512 neuronas)</li>
+                                        <li><strong>Dropout (0.5)</strong> para regularización</li>
+                                        <li>Optimizador: SGD (lr=0.01)</li>
                                     </ul>
-                                </div>
-
-                                <div>
-                                    <h4 class="text-sm font-bold text-white mb-2">Preprocesamiento & Augmentation</h4>
-                                    <p class="text-xs text-gray-400 leading-relaxed">
-                                        Se aplicó normalización (rescale 1./255) y Data Augmentation:
-                                        <span class="text-indigo-300">Rotación 20°, Zoom 0.2, Flip Horizontal</span> para mejorar la generalización en las 5 clases de instrumentos.
-                                    </p>
                                 </div>
 
                                 <div class="grid grid-cols-3 gap-2 mt-4">
                                     <div class="bg-white/5 p-3 rounded border border-white/5 text-center">
-                                        <div class="text-[10px] text-gray-500 uppercase">Epochs</div>
+                                        <div class="text-[10px] text-gray-500 uppercase">Mejor Epoca</div>
                                         <div class="text-xl font-bold text-white">30</div>
                                     </div>
                                     <div class="bg-white/5 p-3 rounded border border-white/5 text-center">
@@ -276,87 +268,90 @@
                                         <div class="text-xl font-bold text-indigo-400">98%</div>
                                     </div>
                                 </div>
+                                
+                                <div class="mt-4 p-3 bg-red-500/5 border border-red-500/20 rounded text-xs text-gray-400">
+                                    <strong class="text-red-400 block mb-1">Limitaciones:</strong>
+                                    Sensible a fondos complejos. El modelo CNN puro mostró leve sobreajuste comparado con el SVM (PCA).
+                                </div>
                             </div>
                         </div>
 
                         <div class="glass-card p-8 rounded-3xl border border-white/10 relative overflow-hidden group hover:border-purple-500/30 transition-colors">
                             <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-30 transition-opacity">
-                                <i data-lucide="waves" class="w-24 h-24 text-purple-500"></i>
+                                <i data-lucide="message-square" class="w-24 h-24 text-purple-500"></i>
                             </div>
                             
-                            <h3 class="text-2xl font-bold mb-2 text-purple-400">LSTM: Secuencias</h3>
+                            <h3 class="text-2xl font-bold mb-2 text-purple-400">LSTM: Análisis de Humor</h3>
                             <p class="text-xs font-mono text-gray-500 mb-6 border-b border-white/10 pb-4">
-                                ARQUITECTURA: RNN/LSTM • EMBEDDING LAYER
+                                ARQUITECTURA: EMBEDDING + LSTM • VOCAB: 10K
                             </p>
 
                             <div class="space-y-6">
                                 <div>
-                                    <h4 class="text-sm font-bold text-white mb-2">Comparativa RNN vs LSTM</h4>
+                                    <h4 class="text-sm font-bold text-white mb-2">Arquitectura & Configuración</h4>
                                     <p class="text-xs text-gray-400 leading-relaxed mb-2">
-                                        Se evaluó el rendimiento en secuencias largas. El modelo LSTM demostró mejor retención de contexto a largo plazo en comparación con la RNN simple, reduciendo el problema del gradiente desvaneciente.
+                                        Modelo ganador frente a RNN simple. Utiliza capa de Embedding (dim 64) seguida de una capa LSTM (64 unidades) y Dropout (0.3).
                                     </p>
+                                    <ul class="text-xs text-gray-400 space-y-1 font-mono list-disc list-inside">
+                                        <li>Max Sequence Length: 50 tokens</li>
+                                        <li>Dataset: ~200,000 textos balanceados</li>
+                                        <li>Optimizador: Adam (lr=0.001)</li>
+                                    </ul>
                                 </div>
 
-                                <div>
-                                    <h4 class="text-sm font-bold text-white mb-2">Análisis de Clustering (Audio)</h4>
-                                    <p class="text-xs text-gray-400 leading-relaxed">
-                                        Adicionalmente se exploró aprendizaje no supervisado (K-Means) sobre características de audio, logrando una <strong>pureza de cluster del 0.95</strong>, validando la separabilidad de las clases.
-                                    </p>
-                                </div>
-
-                                <div class="grid grid-cols-2 gap-2 mt-4">
+                                <div class="grid grid-cols-3 gap-2 mt-4">
                                     <div class="bg-white/5 p-3 rounded border border-white/5 text-center">
-                                        <div class="text-[10px] text-gray-500 uppercase">K-Means Purity</div>
-                                        <div class="text-xl font-bold text-purple-400">0.95</div>
+                                        <div class="text-[10px] text-gray-500 uppercase">Mejor Epoca</div>
+                                        <div class="text-xl font-bold text-white">15</div>
+                                    </div>
+                                    <div class="bg-white/5 p-3 rounded border border-white/5 text-center">
+                                        <div class="text-[10px] text-gray-500 uppercase">Accuracy</div>
+                                        <div class="text-xl font-bold text-green-400">93.88%</div>
                                     </div>
                                     <div class="bg-white/5 p-3 rounded border border-white/5 text-center">
                                         <div class="text-[10px] text-gray-500 uppercase">F1-Score</div>
-                                        <div class="text-xl font-bold text-white">0.87</div>
+                                        <div class="text-xl font-bold text-purple-400">0.93</div>
                                     </div>
+                                </div>
+
+                                <div class="mt-4 p-3 bg-red-500/5 border border-red-500/20 rounded text-xs text-gray-400">
+                                    <strong class="text-red-400 block mb-1">Limitaciones:</strong>
+                                    El vocabulario está limitado a las 10,000 palabras más frecuentes. Textos con jerga muy específica (OOV) pueden perder contexto. Entrenamiento 3x más lento que RNN.
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="border-t border-white/5 pt-16">
-                        <h3 class="text-xl font-light mb-8 text-center">Visualización del Entrenamiento</h3>
+                        <h3 class="text-xl font-light mb-8 text-center">Métricas de Entrenamiento</h3>
                         
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <div class="glass-card p-2 rounded-xl">
-                                <div class="w-full aspect-square bg-black/50 rounded-lg flex items-center justify-center overflow-hidden group relative">
-                                    <img src="./assets/grafica_cnn.png" alt="Accuracy CNN" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
-                                    <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-full aspect-video bg-black/50 rounded-lg flex items-center justify-center overflow-hidden group relative">
+                                    <img src="./assets/grafica_cnn.png" alt="Accuracy CNN" class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity">
+                                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
                                         <span class="px-3 py-1 bg-black/80 text-[10px] font-mono uppercase rounded border border-white/10">CNN Training</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="glass-card p-2 rounded-xl">
-                                <div class="w-full aspect-square bg-black/50 rounded-lg flex items-center justify-center overflow-hidden group relative">
-                                    <img src="./assets/confusion_matrix.png" alt="Matriz Confusión" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
-                                    <div class="absolute inset-0 flex items-center justify-center">
-                                        <span class="px-3 py-1 bg-black/80 text-[10px] font-mono uppercase rounded border border-white/10">Matriz Confusión</span>
+                                <div class="w-full aspect-video bg-black/50 rounded-lg flex items-center justify-center overflow-hidden group relative">
+                                    <img src="./assets/confusion_matrix.png" alt="Matriz Confusión Texto" class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity">
+                                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                        <span class="px-3 py-1 bg-black/80 text-[10px] font-mono uppercase rounded border border-white/10">Matriz Confusión (LSTM)</span>
                                     </div>
                                 </div>
                             </div>
 
                              <div class="glass-card p-2 rounded-xl">
-                                <div class="w-full aspect-square bg-black/50 rounded-lg flex items-center justify-center overflow-hidden group relative">
-                                    <img src="./assets/clusters.png" alt="Clusters Audio" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
-                                    <div class="absolute inset-0 flex items-center justify-center">
-                                        <span class="px-3 py-1 bg-black/80 text-[10px] font-mono uppercase rounded border border-white/10">Audio Clusters</span>
+                                <div class="w-full aspect-video bg-black/50 rounded-lg flex items-center justify-center overflow-hidden group relative">
+                                    <img src="./assets/comparativa_rnn_lstm.png" alt="RNN vs LSTM" class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity">
+                                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                        <span class="px-3 py-1 bg-black/80 text-[10px] font-mono uppercase rounded border border-white/10">RNN vs LSTM</span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="mt-12 p-6 bg-red-900/10 border border-red-500/20 rounded-xl">
-                            <h4 class="text-red-400 font-bold text-sm mb-2 flex items-center gap-2">
-                                <i data-lucide="alert-circle" class="w-4 h-4"></i> Limitaciones del Modelo
-                            </h4>
-                            <p class="text-xs text-gray-400 leading-relaxed">
-                                El modelo CNN (Modelo B) presenta un ligero sobreajuste en épocas avanzadas (30+), mitigado parcialmente por la capa de Dropout. En entornos de baja iluminación o con fondos complejos, la precisión de la clasificación de instrumentos disminuye. La inferencia web depende de la capacidad de la GPU del cliente via WebGL.
-                            </p>
                         </div>
                     </div>
 
