@@ -8,16 +8,12 @@
     <meta name="description" content="Plataforma de clasificación de instrumentos y análisis de texto.">
     <meta name="theme-color" content="#050505">
     
-    <!-- TensorFlow.js (NECESARIO PARA LOS MODELOS) -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.11.0"></script>
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Fuentes -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Outfit:wght@200;400;700;800&family=Space+Mono&display=swap" rel="stylesheet">
     
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <script>
@@ -130,22 +126,16 @@
 </head>
 <body>
 
-    <!-- SONIDO INICIALIZADOR -->
     <div id="sound-init" onclick="initAudio()" class="fixed inset-0 z-[99999] hidden"></div>
 
-    <!-- CURSOR -->
     <div id="cursor-dot"></div>
     <div id="cursor-outline"></div>
 
-    <!-- BACKGROUND (NOTAS MUSICALES) -->
     <div id="musical-space"></div>
-    <!-- Textura de ruido sutil -->
     <div class="fixed inset-0 opacity-[0.03] pointer-events-none z-[1]" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%221%22/%3E%3C/svg%3E');"></div>
 
-    <!-- NAV -->
     <nav class="fixed top-0 w-full z-50 p-6 flex justify-between items-center mix-blend-difference text-white">
         <div class="flex items-center gap-3 hoverable" onclick="goHome()">
-            <!-- LOGO SVG -->
             <svg width="24" height="24" viewBox="0 0 40 40" fill="none" class="transition-transform duration-500 group-hover:rotate-180">
                 <rect x="4" y="12" width="4" height="16" rx="1" fill="white"/>
                 <rect x="12" y="8" width="4" height="24" rx="1" fill="white"/>
@@ -167,7 +157,6 @@
 
     <main class="relative z-10 w-full">
 
-        <!-- SCREEN 1: HOME -->
         <section id="screen-home" class="screen active flex-col w-full">
             <div class="min-h-screen w-full flex flex-col items-center justify-center text-center px-4 relative">
                 
@@ -193,7 +182,6 @@
                 </div>
             </div>
 
-            <!-- INFO SECTION -->
             <div id="about-section" class="w-full py-32 px-6 border-t border-white/5 bg-black/40 backdrop-blur-sm">
                 <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20">
                     <div>
@@ -202,9 +190,9 @@
                             Una solución robusta desarrollada en la Facultad de Ingeniería para detector por imagenes y caracteres de instrumentos y gracia respectivamente.
                         </p>
                     </div>
-                  <div class="space-y-4">
+                    <div class="space-y-4">
                         <div class="text-xs uppercase tracking-widest text-gray-600 mb-4">Core Team</div>
-                        <!-- Students -->
+                        
                         <a href="https://github.com/Jlpineda12" class="hoverable glass-card p-4 rounded-xl flex items-center justify-between group">
                             <div class="flex items-center gap-4">
                                 <div class="w-8 h-8 bg-white/5 rounded-full flex items-center justify-center text-xs">01</div>
@@ -212,6 +200,7 @@
                             </div>
                             <i data-lucide="github" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i>
                         </a>
+
                         <a href="https://github.com/Theser19?tab=repositories" class="hoverable glass-card p-4 rounded-xl flex items-center justify-between group">
                             <div class="flex items-center gap-4">
                                 <div class="w-8 h-8 bg-white/5 rounded-full flex items-center justify-center text-xs">02</div>
@@ -219,6 +208,7 @@
                             </div>
                             <i data-lucide="github" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i>
                         </a>
+
                         <a href="https://github.com/Sebbzz" class="hoverable glass-card p-4 rounded-xl flex items-center justify-between group">
                             <div class="flex items-center gap-4">
                                 <div class="w-8 h-8 bg-white/5 rounded-full flex items-center justify-center text-xs">03</div>
@@ -230,12 +220,153 @@
                 </div>
             </div>
 
-            <!-- MODEL SELECTOR -->
+            <section id="tech-specs" class="w-full py-24 px-6 relative z-20 border-t border-white/5 bg-black/80">
+                <div class="max-w-7xl mx-auto">
+                    
+                    <div class="text-center mb-16">
+                        <span class="text-[10px] uppercase tracking-[0.3em] text-neon font-mono">Arquitectura & Performance</span>
+                        <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-6">Detalles del <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Entrenamiento</span></h2>
+                        <p class="text-gray-400 max-w-2xl mx-auto font-body text-sm">
+                            Implementación de Deep Learning utilizando TensorFlow/Keras. Análisis comparativo entre arquitecturas simples y profundas con regularización.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+
+                        <div class="glass-card p-8 rounded-3xl border border-white/10 relative overflow-hidden group hover:border-indigo-500/30 transition-colors">
+                            <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-30 transition-opacity">
+                                <i data-lucide="cpu" class="w-24 h-24 text-indigo-500"></i>
+                            </div>
+                            
+                            <h3 class="text-2xl font-bold mb-2 text-indigo-400">CNN: Clasificación Visual</h3>
+                            <p class="text-xs font-mono text-gray-500 mb-6 border-b border-white/10 pb-4">
+                                ARQUITECTURA: PROFUNDA (MODELO B) • INPUT: 150x150px
+                            </p>
+
+                            <div class="space-y-6">
+                                <div>
+                                    <h4 class="text-sm font-bold text-white mb-2">Arquitectura del Modelo</h4>
+                                    <ul class="text-xs text-gray-400 space-y-1 font-mono list-disc list-inside">
+                                        <li>4 Capas Convolucionales (32, 64, 128, 128 filtros)</li>
+                                        <li>MaxPooling 2D para reducción de dimensionalidad</li>
+                                        <li><strong>Dropout (0.5)</strong> para evitar sobreajuste</li>
+                                        <li>Función de activación: ReLU + Softmax</li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h4 class="text-sm font-bold text-white mb-2">Preprocesamiento & Augmentation</h4>
+                                    <p class="text-xs text-gray-400 leading-relaxed">
+                                        Se aplicó normalización (rescale 1./255) y Data Augmentation:
+                                        <span class="text-indigo-300">Rotación 20°, Zoom 0.2, Flip Horizontal</span> para mejorar la generalización en las 5 clases de instrumentos.
+                                    </p>
+                                </div>
+
+                                <div class="grid grid-cols-3 gap-2 mt-4">
+                                    <div class="bg-white/5 p-3 rounded border border-white/5 text-center">
+                                        <div class="text-[10px] text-gray-500 uppercase">Epochs</div>
+                                        <div class="text-xl font-bold text-white">30</div>
+                                    </div>
+                                    <div class="bg-white/5 p-3 rounded border border-white/5 text-center">
+                                        <div class="text-[10px] text-gray-500 uppercase">Val Acc</div>
+                                        <div class="text-xl font-bold text-green-400">~70%</div>
+                                    </div>
+                                    <div class="bg-white/5 p-3 rounded border border-white/5 text-center">
+                                        <div class="text-[10px] text-gray-500 uppercase">SVM Acc</div>
+                                        <div class="text-xl font-bold text-indigo-400">98%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-8 rounded-3xl border border-white/10 relative overflow-hidden group hover:border-purple-500/30 transition-colors">
+                            <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-30 transition-opacity">
+                                <i data-lucide="waves" class="w-24 h-24 text-purple-500"></i>
+                            </div>
+                            
+                            <h3 class="text-2xl font-bold mb-2 text-purple-400">LSTM: Secuencias</h3>
+                            <p class="text-xs font-mono text-gray-500 mb-6 border-b border-white/10 pb-4">
+                                ARQUITECTURA: RNN/LSTM • EMBEDDING LAYER
+                            </p>
+
+                            <div class="space-y-6">
+                                <div>
+                                    <h4 class="text-sm font-bold text-white mb-2">Comparativa RNN vs LSTM</h4>
+                                    <p class="text-xs text-gray-400 leading-relaxed mb-2">
+                                        Se evaluó el rendimiento en secuencias largas. El modelo LSTM demostró mejor retención de contexto a largo plazo en comparación con la RNN simple, reduciendo el problema del gradiente desvaneciente.
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <h4 class="text-sm font-bold text-white mb-2">Análisis de Clustering (Audio)</h4>
+                                    <p class="text-xs text-gray-400 leading-relaxed">
+                                        Adicionalmente se exploró aprendizaje no supervisado (K-Means) sobre características de audio, logrando una <strong>pureza de cluster del 0.95</strong>, validando la separabilidad de las clases.
+                                    </p>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-2 mt-4">
+                                    <div class="bg-white/5 p-3 rounded border border-white/5 text-center">
+                                        <div class="text-[10px] text-gray-500 uppercase">K-Means Purity</div>
+                                        <div class="text-xl font-bold text-purple-400">0.95</div>
+                                    </div>
+                                    <div class="bg-white/5 p-3 rounded border border-white/5 text-center">
+                                        <div class="text-[10px] text-gray-500 uppercase">F1-Score</div>
+                                        <div class="text-xl font-bold text-white">0.87</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-white/5 pt-16">
+                        <h3 class="text-xl font-light mb-8 text-center">Visualización del Entrenamiento</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="glass-card p-2 rounded-xl">
+                                <div class="w-full aspect-square bg-black/50 rounded-lg flex items-center justify-center overflow-hidden group relative">
+                                    <img src="./assets/grafica_cnn.png" alt="Accuracy CNN" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <span class="px-3 py-1 bg-black/80 text-[10px] font-mono uppercase rounded border border-white/10">CNN Training</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="glass-card p-2 rounded-xl">
+                                <div class="w-full aspect-square bg-black/50 rounded-lg flex items-center justify-center overflow-hidden group relative">
+                                    <img src="./assets/confusion_matrix.png" alt="Matriz Confusión" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <span class="px-3 py-1 bg-black/80 text-[10px] font-mono uppercase rounded border border-white/10">Matriz Confusión</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                             <div class="glass-card p-2 rounded-xl">
+                                <div class="w-full aspect-square bg-black/50 rounded-lg flex items-center justify-center overflow-hidden group relative">
+                                    <img src="./assets/clusters.png" alt="Clusters Audio" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <span class="px-3 py-1 bg-black/80 text-[10px] font-mono uppercase rounded border border-white/10">Audio Clusters</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-12 p-6 bg-red-900/10 border border-red-500/20 rounded-xl">
+                            <h4 class="text-red-400 font-bold text-sm mb-2 flex items-center gap-2">
+                                <i data-lucide="alert-circle" class="w-4 h-4"></i> Limitaciones del Modelo
+                            </h4>
+                            <p class="text-xs text-gray-400 leading-relaxed">
+                                El modelo CNN (Modelo B) presenta un ligero sobreajuste en épocas avanzadas (30+), mitigado parcialmente por la capa de Dropout. En entornos de baja iluminación o con fondos complejos, la precisión de la clasificación de instrumentos disminuye. La inferencia web depende de la capacidad de la GPU del cliente via WebGL.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
             <div class="py-32 px-4 w-full flex flex-col items-center justify-center">
                 <h3 class="text-2xl font-light mb-16">Selecciona Modelo de Inferencia</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl w-full">
                     
-                    <!-- Tarjeta Imagen -->
                     <div onclick="selectMode('image')" class="hoverable glass-card p-10 rounded-[2rem] cursor-pointer group relative overflow-hidden h-80 flex flex-col justify-end">
                         <div class="absolute inset-0 bg-indigo-600/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         <i data-lucide="scan-eye" class="w-12 h-12 text-white mb-auto group-hover:text-indigo-400 transition-colors"></i>
@@ -245,7 +376,6 @@
                         </div>
                     </div>
 
-                    <!-- Tarjeta Texto (MODIFICADA) -->
                     <div onclick="selectMode('text')" class="hoverable glass-card p-10 rounded-[2rem] cursor-pointer group relative overflow-hidden h-80 flex flex-col justify-end">
                         <div class="absolute inset-0 bg-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         <i data-lucide="file-text" class="w-12 h-12 text-white mb-auto group-hover:text-purple-400 transition-colors"></i>
@@ -259,7 +389,6 @@
             </div>
         </section>
 
-        <!-- SCREEN 2: UPLOAD/INPUT -->
         <section id="screen-upload" class="screen flex-col min-h-screen w-full pt-28 px-4 container mx-auto max-w-2xl hidden">
             <button onclick="goHome()" class="hoverable mb-8 text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-white transition-colors flex items-center gap-2">
                 <i data-lucide="arrow-left" class="w-4 h-4"></i> Cancelar
@@ -274,13 +403,11 @@
                         <h2 class="text-2xl font-bold mb-2">Entrada de Datos</h2>
                         <p id="mode-text" class="text-xs text-gray-500 mb-8 font-mono">Esperando input...</p>
 
-                        <!-- ZONA DE CARGA IMAGEN -->
                         <div id="drop-zone" class="hoverable border border-dashed border-white/20 rounded-xl h-64 flex flex-col items-center justify-center cursor-pointer hover:bg-white/5 transition-colors relative">
                             <input type="file" id="file-input" class="hidden" accept="image/*">
                             <div id="upload-empty" class="pointer-events-none">
                                 <span class="text-[10px] uppercase tracking-widest text-gray-600">Click para subir imagen</span>
                             </div>
-                            <!-- Preview de imagen -->
                             <div id="upload-preview" class="absolute inset-0 hidden items-center justify-center bg-black z-20 p-4 rounded-xl">
                                 <img id="img-prev" class="h-full w-full object-contain opacity-80 hidden rounded">
                                 <button onclick="clearFile(event)" class="hoverable absolute top-2 right-2 p-2 bg-black/50 text-white hover:text-red-500 rounded-full">
@@ -289,7 +416,6 @@
                             </div>
                         </div>
 
-                        <!-- ZONA DE TEXTO (NUEVO) -->
                         <div id="text-zone" class="hidden">
                              <textarea id="text-input-area" 
                              class="w-full h-64 bg-white/5 border border-dashed border-white/20 rounded-xl p-6 text-white placeholder-gray-600 focus:outline-none focus:border-purple-500 focus:bg-white/10 transition-all resize-none font-mono text-sm leading-relaxed" 
@@ -304,7 +430,6 @@
             </div>
         </section>
 
-        <!-- SCREEN 3: RESULTS -->
         <section id="screen-result" class="screen flex-col min-h-screen w-full pt-24 px-4 container mx-auto max-w-5xl hidden">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 h-full">
                 <div class="glass-card rounded-[2rem] bg-black/50 relative overflow-hidden h-[400px] lg:h-auto flex items-center justify-center border border-white/10">
@@ -324,8 +449,7 @@
                     <div class="bg-white/5 p-6 rounded-2xl border border-white/5 mb-10">
                         <div class="text-[10px] uppercase tracking-widest text-gray-500 mb-4">Confianza del Modelo</div>
                         <div id="stats-container" class="space-y-4">
-                            <!-- JS llenará esto -->
-                        </div>
+                            </div>
                     </div>
 
                     <div class="flex gap-4">
@@ -339,7 +463,6 @@
 
     </main>
 
-    <!-- LOADING (MATRIX) -->
     <div id="loading" class="fixed inset-0 bg-black z-[100] hidden flex-col items-center justify-center overflow-hidden">
         <canvas id="matrix-canvas"></canvas>
         <div class="relative z-10 flex flex-col items-center">
@@ -359,8 +482,8 @@
         let currentMode = 'image';
         let file = null;
 
-        // Clases del modelo de Imagen (Default, se sobreescribe con JSON si existe)
-        let classNamesImg = ["Acordeón", "Bajo", "Batería", "Guitarra", "Piano", "Violín"]; 
+        // Clases del modelo de Imagen (Ajustado a tus 5 clases reales)
+        let classNamesImg = ["Acordeón", "Batería", "Piano", "Violín", "Flauta"]; 
         const IMG_SIZE = 150;
         const TEXT_MAX_LEN = 50;
 
@@ -368,14 +491,14 @@
         async function loadModels() {
             const statusDiv = document.getElementById('status-model');
             try {
-                // Cargar metadatos imagen
+                // Cargar metadatos imagen (si existen)
                 try {
-                    const res = await fetch("./Modelo_Imagenes/info_modelo.json");
+                    const res = await fetch("./Modelo_Imagenes/class_names.json");
                     if(res.ok) {
                         const data = await res.json();
-                        if(data.class_names) classNamesImg = data.class_names;
+                        classNamesImg = data; // Cargar clases desde JSON si existe
                     }
-                } catch(e) { console.log("Usando clases por defecto"); }
+                } catch(e) { console.log("Usando clases por defecto: " + classNamesImg); }
 
                 // Cargar modelo CNN
                 modeloImg = await tf.loadLayersModel("Modelo_Imagenes/model.json");
@@ -544,7 +667,7 @@
 
             // Ordenar resultados
             const sorted = Array.from(predictions).map((p, i) => ({
-                l: classNamesImg[i],
+                l: classNamesImg[i] || `Clase ${i}`, // Fallback si no hay nombre
                 p: (p * 100).toFixed(1)
             })).sort((a, b) => b.p - a.p);
 
